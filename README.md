@@ -5,7 +5,7 @@ A C# ASP.NET Core MVC 3.1 Web Application
 ### Purpose
 
 **Vehicle Records** is an application for users to keep track of all of their vehicles as well as the each vehicle's records.
-These include Fuel Purchases (Fillups), Maintenance & Repairs, Insurance Payments, and Registration.
+These records include Fuel Purchases (Fillups), Maintenance & Repairs, Insurance Payments, Registration, and any Accident Information : - (.
 
 ### Key Features
 
