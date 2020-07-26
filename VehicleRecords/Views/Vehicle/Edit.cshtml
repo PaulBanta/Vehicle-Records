@@ -1,0 +1,98 @@
+﻿@model Vehicle
+
+<form method="post">
+  <input type="hidden" asp-for="Id" />
+
+  <table class="border border-dark shadow">
+    <tr>
+      <th class="pl-3 pr-3 pt-2 text-center" colspan="2"> <h3> Edit Vehicle </h3> </th>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    @if (ViewData.ModelState.ErrorCount > 0)
+    {
+      <tr>
+        <th class="pl-3 pr-3" colspan="2">
+          <div asp-validation-summary="All" class="text-danger"></div>
+        </th>
+      </tr>
+
+      <tr>
+        <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+      </tr>
+    }
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Year: </th>
+      <td class="p-1 pr-3"> <input asp-for="Year" required type="number" min="1900" max="@DateTime.Now.AddDays(365).Year" step="1" value="@Model.Year" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Make: </th>
+      <td class="p-1 pr-3"> <input asp-for="Make" required value="@Model.Make" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Model: </th>
+      <td class="p-1 pr-3"> <input asp-for="Model" required value="@Model.Model" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Color: </th>
+      <td class="p-1 pr-3"> <input asp-for="Color" value="@Model.Color" /> </td>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> VIN: </th>
+      <td class="p-1 pr-3"> <input asp-for="Vin" value="@Model.Vin" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Date Purchased: </th>
+      <td class="p-1 pr-3"> <input asp-for="DatePurchased" value="@Model.DatePurchased?.ToString("yyyy-MM-dd")" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Purchase Price: </th>
+      <td class="p-1 pr-3"> <input asp-for="PurchasePrice" type="number" min="0" step="1" value="@Model.PurchasePrice" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Odometer When Purchased: </th>
+      <td class="p-1 pr-3"> <input asp-for="OdometerAtPurchase" type="number" min="0" step="1" value="@Model.OdometerAtPurchase" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Date Sold: </th>
+      <td class="p-1 pr-3"> <input asp-for="DateSold" value="@Model.DateSold?.ToString("yyyy-MM-dd")" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Sale Price: </th>
+      <td class="p-1 pr-3"> <input asp-for="SalePrice" type="number" min="0" step="1" value="@Model.SalePrice" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Odometer When Sold: </th>
+      <td class="p-1 pr-3"> <input asp-for="OdometerAtSale" type="number" min="0" step="1" value="@Model.OdometerAtSale" /> </td>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <td class="pb-3 pl-3 pr-3 text-center" colspan="2">
+        <input type="submit" class="btn btn-sm btn-success" value="Update Vehicle" />
+        <a asp-action="Detail" class="btn btn-sm btn-info" asp-route-id="@Model.Id"> Cancel </a>
+      </td>
+    </tr>
+  </table>
+</form>

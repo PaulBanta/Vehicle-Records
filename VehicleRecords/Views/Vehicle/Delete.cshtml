@@ -1,0 +1,88 @@
+﻿@model Vehicle
+
+  <table class="border border-dark shadow">
+    <tr>
+      <th class="pl-3 pr-3 pt-2 text-center" colspan="2"> <h3> Delete Vehicle </h3> </th>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Year: </th>
+      <td class="p-1 pr-3"> @Model.Year </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Make: </th>
+      <td class="p-1 pr-3"> @Model.Make </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Model: </th>
+      <td class="p-1 pr-3"> @Model.Model </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Color: </th>
+      <td class="p-1 pr-3"> @Model.Color </td>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> VIN: </th>
+      <td class="p-1 pr-3"> @Model.Vin </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Date Purchased: </th>
+      <td class="p-1 pr-3"> @Model.DatePurchased?.ToString("ddd, MMM d, yyyy") </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Purchase Price: </th>
+      <td class="p-1 pr-3"> @Model.PurchasePrice </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Odometer When Purchased: </th>
+      <td class="p-1 pr-3"> @Model.OdometerAtPurchase </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Date Sold: </th>
+      <td class="p-1 pr-3"> @Model.DateSold?.ToString("ddd, MMM d, yyyy") </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Sale Price: </th>
+      <td class="p-1 pr-3"> @Model.SalePrice </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Odometer When Sold: </th>
+      <td class="p-1 pr-3"> @Model.OdometerAtSale </td>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <th class="pl-3 pr-3 text-center" colspan="2"> <h3> <span class="badge badge-warning text-danger"> &nbsp; Are You Sure? &nbsp; </span> </h3> </th>
+    </tr>
+
+    <tr>
+      <td class="pb-3 pl-3 pr-3 text-center" colspan="2">
+        <form method="post">
+          <input type="hidden" asp-for="Id" value="@Model.Id" />
+          <input type="submit" class="btn btn-sm btn-danger" value="Delete" />
+          <a asp-action="Detail" asp-route-id="@Model.Id" class="btn btn-sm btn-info"> Cancel </a>
+        </form>
+      </td>
+    </tr>
+  </table>

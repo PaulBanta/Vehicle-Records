@@ -1,0 +1,92 @@
+﻿@model Fillup
+
+<table class="border border-dark shadow">
+  <tr>
+    <th class="pl-3 pr-3 pt-2 text-center" colspan="2"> <h3> Delete Fillup </h3> </th>
+  </tr>
+
+  <tr>
+    <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Date: </th>
+    <td class="p-1 pr-3"> @Model.Date?.ToString("ddd, MMM d, yyyy") </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Trip Odometer: </th>
+    <td class="p-1 pr-3"> @Model.TripOdometer.ToString("N1") </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Odometer: </th>
+    <td class="p-1 pr-3"> @Model.Odometer.ToString("N0") </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Gallons: </th>
+    <td class="p-1 pr-3"> @Model.Gallons.ToString("N3") </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Total Cost: </th>
+    <td class="p-1 pr-3"> @Model.TotalCost.ToString("C") </td>
+  </tr>
+
+  <tr>
+    <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Days Since Last Fillup: </th>
+    <td class="p-1 pr-3"> @Model.DaysSinceLastFillup.ToString("N0") </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Miles Per Day: </th>
+    <td class="p-1 pr-3"> @Model.MilesPerDay.ToString("N1") </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Miles Per Gallon: </th>
+    <td class="p-1 pr-3"> @Model.MilesPerGallon.ToString("N1") </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Price Per Day: </th>
+    <td class="p-1 pr-3"> @Model.PricePerDay.ToString("C2") </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Price Per Gallon: </th>
+    <td class="p-1 pr-3"> @Model.PricePerGallon.ToString("C3") </td>
+  </tr>
+
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Price Per Gallon: </th>
+    <td class="p-1 pr-3"> @Model.PricePerMile.ToString("C3") </td>
+  </tr>
+
+  <tr>
+    <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+  </tr>
+
+  <tr>
+    <th class="pl-3 pr-3 text-center" colspan="2"> <h3> <span class="badge badge-warning text-danger"> &nbsp; Are You Sure? &nbsp; </span> </h3> </th>
+  </tr>
+
+  <tr>
+    <td class="pb-3 pl-3 pr-3 text-center" colspan="2">
+      <form method="post">
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <input type="hidden" asp-for="VehicleId" value="@Model.VehicleId" />
+        <input type="submit" class="btn btn-sm btn-danger" value="Delete" />
+        <a asp-controller="Vehicle" asp-action="Detail" asp-route-id="@Model.VehicleId" class="btn btn-sm btn-info">
+          Cancel
+        </a>
+      </form>
+    </td>
+  </tr>
+</table>

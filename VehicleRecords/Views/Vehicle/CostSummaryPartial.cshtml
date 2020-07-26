@@ -1,0 +1,78 @@
+﻿@model Vehicle
+
+@{
+  double purchasePrice = Convert.ToDouble(Model.PurchasePrice);
+  double salePrice = Convert.ToDouble(Model.SalePrice);
+  double totalFillups = Model.Fillups.Sum(f => f.TotalCost);
+  double totalMaintenance = Model.MaintenanceRepairs.Sum(mr => mr.TotalCost);
+}
+
+<table class="border border-dark shadow">
+  <tr>
+    <th class="pl-3 pr-3 pt-2 text-center" colspan="2"> <h3> Vehicle Cost Summary </h3> </th>
+  </tr>
+
+  <tr>
+    <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Purchase: </th>
+    <td class="p-1 pr-3">
+      @Model.PurchasePrice?.ToString("C0")
+    </td>
+  </tr>
+
+  @if (Model.SalePrice > 0)
+  {
+    <tr>
+      <th class="p-1 pl-3 text-right"> Sale: </th>
+      <td class="p-1 pr-3">
+        @Model.SalePrice?.ToString("C0")
+      </td>
+    </tr>
+  }
+
+  <tr>
+    <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Fuel: </th>
+    <td class="p-1 pr-3">
+      @totalFillups.ToString("C2")
+    </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Maintenance &amp; Repairs: </th>
+    <td class="p-1 pr-3">
+      @totalMaintenance.ToString("C2")
+    </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Insurance: </th>
+    <td class="p-1 pr-3">
+      Coming Soon
+    </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Registration: </th>
+    <td class="p-1 pr-3">
+      Coming Soon
+    </td>
+  </tr>
+
+  <tr>
+    <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-right"> Total: </th>
+    <td class="p-1 pr-3">
+      @((purchasePrice + totalFillups + totalMaintenance - salePrice).ToString("C0"))
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,56 @@
+﻿@model IQueryable<Vehicle>
+
+  <table class="border border-dark shadow">
+    <tr>
+      <th class="pl-3 pr-3 pt-2 text-center" colspan="5"> <h3> Vehicles </h3> </th>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="5"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <td class="pl-3 pr-3 text-center" colspan="5">
+        <a asp-action="Add" class="btn btn-sm btn-success">
+          Add New Vehicle
+        </a>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="5"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-center"> Year </th>
+      <th class="p-1 text-center"> Make </th>
+      <th class="p-1 text-center"> Model </th>
+      <th class="p-1 text-center"> Color </th>
+      <th class="p-1 pr-3 text-center"> Actions </th>
+    </tr>
+
+    @foreach (Vehicle v in Model)
+    {
+      <tr>
+        <td class="p-1 pl-3 text-center"> @v.Year </td>
+        <td class="p-1 text-center"> @v.Make </td>
+        <td class="p-1 text-center"> @v.Model </td>
+        <td class="p-1 text-center"> @v.Color </td>
+        <td class="p-1 pr-3 text-center">
+          <a asp-action="Detail" asp-route-id="@v.Id" class="btn btn-sm btn-primary">
+            Details
+          </a>
+          <a asp-action="Edit" asp-route-id="@v.Id" class="btn btn-sm btn-warning">
+            Edit
+          </a>
+          <a asp-action="Delete" asp-route-id="@v.Id" class="btn btn-sm btn-danger">
+            Delete
+          </a>
+        </td>
+      </tr>
+    }
+
+    <tr>
+      <td class="pb-2" colspan="5"> </td>
+    </tr>
+  </table>

@@ -1,0 +1,96 @@
+﻿@model Vehicle
+
+<form method="post">
+  <table class="border border-dark shadow">
+    <tr>
+      <th class="pl-3 pr-3 pt-2 text-center" colspan="2"> <h3> Add New Vehicle </h3> </th>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    @if (ViewData.ModelState.ErrorCount > 0)
+    {
+      <tr>
+        <th class="pl-3 pr-3" colspan="2">
+          <div asp-validation-summary="All" class="text-danger"></div>
+        </th>
+      </tr>
+
+      <tr>
+        <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+      </tr>
+    }
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Year: </th>
+      <td class="p-1 pr-3"> <input asp-for="Year" required type="number" min="1900" max="@DateTime.Now.AddDays(365).Year" step="1" value="" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Make: </th>
+      <td class="p-1 pr-3"> <input asp-for="Make" required value="" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Model: </th>
+      <td class="p-1 pr-3"> <input asp-for="Model" required value="" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Color: </th>
+      <td class="p-1 pr-3"> <input asp-for="Color" value="" /> </td>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> VIN: </th>
+      <td class="p-1 pr-3"> <input asp-for="Vin" value="" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Date Purchased: </th>
+      <td class="p-1 pr-3"> <input asp-for="DatePurchased" value="" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Purchase Price: </th>
+      <td class="p-1 pr-3"> <input asp-for="PurchasePrice" type="number" min="0" step="1" value="" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Odometer When Purchased: </th>
+      <td class="p-1 pr-3"> <input asp-for="OdometerAtPurchase" type="number" min="0" step="1" value="" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Date Sold: </th>
+      <td class="p-1 pr-3"> <input asp-for="DateSold" value="" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Sale Price: </th>
+      <td class="p-1 pr-3"> <input asp-for="SalePrice" type="number" min="0" step="1" value="" /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Odometer When Sold: </th>
+      <td class="p-1 pr-3"> <input asp-for="OdometerAtSale" type="number" min="0" step="1" value="" /> </td>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <td class="pb-3 pl-3 pr-3 text-center" colspan="2">
+        <input type="submit" class="btn btn-sm btn-success" value="Add New Vehicle" />
+        <a asp-action="Index" class="btn btn-sm btn-info"> Cancel </a>
+      </td>
+    </tr>
+  </table>
+</form>
