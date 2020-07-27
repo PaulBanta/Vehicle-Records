@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using VehicleRecords.Models;
 
 namespace VehicleRecords.Controllers
@@ -27,6 +28,7 @@ namespace VehicleRecords.Controllers
       {
          Fillup fillup = new Fillup();
          fillup.VehicleId = vehicleId;
+         fillup.Date = DateTime.Now;
          return View(fillup);
       }
 

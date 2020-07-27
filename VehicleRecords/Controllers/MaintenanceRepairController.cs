@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using VehicleRecords.Models;
 
 namespace VehicleRecords.Controllers
@@ -27,6 +28,7 @@ namespace VehicleRecords.Controllers
       {
          MaintenanceRepair maintenanceRepair = new MaintenanceRepair();
          maintenanceRepair.VehicleId = vehicleId;
+         maintenanceRepair.Date = DateTime.Now;
          return View(maintenanceRepair);
       }
 
@@ -44,58 +46,58 @@ namespace VehicleRecords.Controllers
 
       //   R e a d
 
-      // public IActionResult Detail(int id)
-      // {
-      //    MaintenanceRepair maintenanceRepair = _repository.GetMaintenanceRepairById(id);
-      //    if (maintenanceRepair == null)
-      //    {
-      //       return RedirectToAction("Index", "Vehicle");
-      //    }
-      //    return View(maintenanceRepair);
-      // }
+      public IActionResult Detail(int id)
+      {
+         MaintenanceRepair maintenanceRepair = _repository.GetMaintenanceRepairById(id);
+         if (maintenanceRepair == null)
+         {
+            return RedirectToAction("Index", "Vehicle");
+         }
+         return View(maintenanceRepair);
+      }
 
       //   U p d a t e
 
-      // [HttpGet]
-      // public IActionResult Edit(int id)
-      // {
-      //    MaintenanceRepair maintenanceRepair = _repository.GetMaintenanceRepairById(id);
-      //    if (maintenanceRepair == null)
-      //    {
-      //       return RedirectToAction("Index", "Vehicle");
-      //    }
-      //    return View(maintenanceRepair);
-      // }
+      [HttpGet]
+      public IActionResult Edit(int id)
+      {
+         MaintenanceRepair maintenanceRepair = _repository.GetMaintenanceRepairById(id);
+         if (maintenanceRepair == null)
+         {
+            return RedirectToAction("Index", "Vehicle");
+         }
+         return View(maintenanceRepair);
+      }
 
-      // [HttpPost]
-      // public IActionResult Edit(MaintenanceRepair maintenanceRepair)
-      // {
-      //    if (ModelState.IsValid)
-      //    {
-      //       _repository.UpdateMaintenanceRepairPutEntire(maintenanceRepair, maintenanceRepair.Id);
-      //       return RedirectToAction("Detail", "Vehicle", new { id = maintenanceRepair.VehicleId });
-      //    }
-      //    return View(maintenanceRepair);
-      // }
+      [HttpPost]
+      public IActionResult Edit(MaintenanceRepair maintenanceRepair)
+      {
+         if (ModelState.IsValid)
+         {
+            _repository.UpdateMaintenanceRepairPutEntire(maintenanceRepair, maintenanceRepair.Id);
+            return RedirectToAction("Detail", "Vehicle", new { id = maintenanceRepair.VehicleId });
+         }
+         return View(maintenanceRepair);
+      }
 
       //   D e l e t e
 
-      // [HttpGet]
-      // public IActionResult Delete(int id)
-      // {
-      //    MaintenanceRepair maintenanceRepair = _repository.GetMaintenanceRepairById(id);
-      //    if (maintenanceRepair == null)
-      //    {
-      //       return RedirectToAction("Index", "Vehicle");
-      //    }
-      //    return View(maintenanceRepair);
-      // }
+      [HttpGet]
+      public IActionResult Delete(int id)
+      {
+         MaintenanceRepair maintenanceRepair = _repository.GetMaintenanceRepairById(id);
+         if (maintenanceRepair == null)
+         {
+            return RedirectToAction("Index", "Vehicle");
+         }
+         return View(maintenanceRepair);
+      }
 
-      // [HttpPost]
-      // public IActionResult Delete(MaintenanceRepair maintenanceRepair)
-      // {
-      //    _repository.DeleteMaintenanceRepair(maintenanceRepair.Id);
-      //    return RedirectToAction("Detail", "Vehicle", new { id = maintenanceRepair.VehicleId });
-      // }
+      [HttpPost]
+      public IActionResult Delete(MaintenanceRepair maintenanceRepair)
+      {
+         _repository.DeleteMaintenanceRepair(maintenanceRepair.Id);
+         return RedirectToAction("Detail", "Vehicle", new { id = maintenanceRepair.VehicleId });
+      }
    }
 }

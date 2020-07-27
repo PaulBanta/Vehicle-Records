@@ -27,7 +27,7 @@
 
     <tr>
       <th class="p-1 pl-3 text-right"> Date: </th>
-      <td class="p-1 pr-3"> <input asp-for="Date" required value="@DateTime.Now.ToString("yyyy-MM-dd")" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="Date" required value="@Model.Date?.ToString("yyyy-MM-dd")" /> </td>
     </tr>
 
     <tr>

@@ -26,8 +26,8 @@ namespace VehicleRecords
 
       public void ConfigureServices(IServiceCollection services)
       {
-         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
-         // services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Environment.GetEnvironmentVariable("VehicleRecordsDbConnectionString")));
+         // services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
+         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Environment.GetEnvironmentVariable("VehicleRecordsDbConnectionString")));
 
          services.AddScoped<IFillupRepository, EfFillupRepository>();
          services.AddScoped<IMaintenanceRepairRepository, EfMaintenanceRepairRepository>(); 

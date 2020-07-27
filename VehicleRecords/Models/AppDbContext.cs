@@ -67,14 +67,14 @@ namespace VehicleRecords.Models
             Id = 1,
             EmailAddress = "85FDFD0FB6DFE3AFED031983A1EAEC69ADB8E91CFCEB9FA3EBFAA6984C1E564541CCA57A965FD4C6ACF6632EB0130F42F70E4E52EA038B111B6E16461F2165CD",
             Password = "0389807F1DB834156EDD82E92D8EBCED3834A457F52B33072B697A9F12C65A9F0EE0D05C0555FA1EDE493E7B168AAA5434DFDE3F4B18E6BD47EFE9E84E171FF6"
-         }); // PBanta101@GMail.Com | Wombat!0!
+         }); // PBanta101@GMail.Com
 
          modelBuilder.Entity<User>().HasData(new User
          {
             Id = 2,
             EmailAddress = "4F988DDAFEE8760D1B56532E2C1C356EAC82DF48EA37F47E86F93230032236C64A0183C9C8670DC9D68D1F5F52E1A6F474FB88ACCA637DD0592894AB442EAA12",
             Password = "211B75AF9B9A156488BC8DC2D576F2E0DCF52A79C077F7C250C74683CED51350E245C0E9290EEBD5B06208FF644F964C4E74604460F29005D9A9FE982348BFA7"
-         }); // PBanta@Example.Com | Wombat!0!
+         }); // PBanta@Example.Com
 
          //   V e h i c l e s
 
@@ -202,7 +202,7 @@ namespace VehicleRecords.Models
             Id = 2,
             Date = new System.DateTime(2020, 7, 18),
             BriefDescriptionOfWork = "Replace Clutch",
-            FullDescriptionOfWork = "Parts: $150\nLabor: $245\nWaranty: 6 Months / 6,000 Miles",
+            FullDescriptionOfWork = "Parts: $150\nLabor: $245\nWarranty: 6 Months / 6,000 Miles",
             PerformedBy = "Woodmoor Conoco",
             Odometer = 200150,
             TotalCost = 395,

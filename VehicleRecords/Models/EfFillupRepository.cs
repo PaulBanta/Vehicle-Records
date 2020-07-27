@@ -156,7 +156,8 @@ namespace VehicleRecords.Models
             return;
          }
 
-         IEnumerable<Fillup> fillups = _context.Fillups.Where(f => f.VehicleId == vehicleId).OrderBy(f => f.Date).ThenBy(f => f.Odometer);
+         IEnumerable<Fillup> fillups = _context.Fillups.Where(f => f.VehicleId == vehicleId)
+                                                       .OrderBy(f => f.Date).ThenBy(f => f.Odometer);
          if (fillups == null || fillups.Count() == 0)
          {
             return;
@@ -170,8 +171,6 @@ namespace VehicleRecords.Models
          }
 
          _context.SaveChanges();
-
-         return;
-      }
+      } // end RecomputeDaysBetweenFillups( )
    }
 }
