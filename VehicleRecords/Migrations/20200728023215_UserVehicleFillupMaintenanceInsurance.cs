@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VehicleRecords.Migrations
 {
-    public partial class One : Migration
+    public partial class UserVehicleFillupMaintenanceInsurance : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -90,6 +90,34 @@ namespace VehicleRecords.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Insurance",
+                schema: "VehRec",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "date", nullable: false),
+                    NumberOfMonths = table.Column<int>(nullable: false),
+                    Company = table.Column<string>(maxLength: 40, nullable: false),
+                    PolicyNumber = table.Column<string>(maxLength: 40, nullable: true),
+                    Coverage = table.Column<string>(maxLength: 40, nullable: true),
+                    TotalCost = table.Column<decimal>(type: "decimal(7, 2)", nullable: false),
+                    CostPerMonth = table.Column<decimal>(type: "decimal(7, 2)", nullable: false, computedColumnSql: "iif( [NumberOfMonths] > 0, [TotalCost] / [NumberOfMonths], 999.9 )"),
+                    VehicleId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Insurance", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Insurance_Vehicle_VehicleId",
+                        column: x => x.VehicleId,
+                        principalSchema: "VehRec",
+                        principalTable: "Vehicle",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MaintenanceRepair",
                 schema: "VehRec",
                 columns: table => new
@@ -167,13 +195,19 @@ namespace VehicleRecords.Migrations
                     { 1, "Oil Change", new DateTime(2020, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 200000, "Self", 22.49m, 1 },
                     { 2, "Replace Clutch", new DateTime(2020, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), @"Parts: $150
                 Labor: $245
-                Waranty: 6 Months / 6,000 Miles", 200150, "Woodmoor Conoco", 395m, 1 }
+                Warranty: 6 Months / 6,000 Miles", 200150, "Woodmoor Conoco", 395m, 1 }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Fillup_VehicleId",
                 schema: "VehRec",
                 table: "Fillup",
+                column: "VehicleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Insurance_VehicleId",
+                schema: "VehRec",
+                table: "Insurance",
                 column: "VehicleId");
 
             migrationBuilder.CreateIndex(
@@ -200,6 +234,10 @@ namespace VehicleRecords.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Fillup",
+                schema: "VehRec");
+
+            migrationBuilder.DropTable(
+                name: "Insurance",
                 schema: "VehRec");
 
             migrationBuilder.DropTable(

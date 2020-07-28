@@ -1,0 +1,64 @@
+﻿@model Insurance
+
+  <table class="border border-dark shadow">
+    <tr>
+      <th class="pl-3 pr-3 pt-2 text-center" colspan="2"> <h3> Insurance Details </h3> </th>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Date: </th>
+      <td class="p-1 pr-3"> @Model.Date?.ToString("ddd, MMM d, yyyy") </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Number Of Months: </th>
+      <td class="p-1 pr-3"> @Model.NumberOfMonths.ToString("N0") </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Company: </th>
+      <td class="p-1 pr-3"> @Model.Company </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Policy Number: </th>
+      <td class="p-1 pr-3"> @Model.PolicyNumber </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Coverage: </th>
+      <td class="p-1 pr-3"> @Model.Coverage </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Total Cost: </th>
+      <td class="p-1 pr-3"> @Model.TotalCost.ToString("C") </td>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <th class="p-1 pl-3 text-right"> Cost Per Month: </th>
+      <td class="p-1 pr-3"> @Model.CostPerMonth.ToString("C") </td>
+    </tr>
+
+    <tr>
+      <td class="pl-4 pr-4" colspan="2"> <hr /> </td>
+    </tr>
+
+    <tr>
+      <td class="pb-3 pl-3 pr-3 text-center" colspan="2">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-warning"> Edit </a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-danger"> Delete </a>
+        <a asp-area="" asp-controller="Vehicle" asp-action="Detail" asp-route-id="@Model.VehicleId" class="btn btn-sm btn-info">
+          Back
+        </a>
+      </td>
+    </tr>
+  </table>

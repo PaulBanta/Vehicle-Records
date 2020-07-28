@@ -23,24 +23,24 @@
       </tr>
     }
 
-    <tr>
-      <th class="p-1 pl-3 text-right"> Year: </th>
-      <td class="p-1 pr-3"> <input asp-for="Year" required type="number" min="1900" max="@DateTime.Now.AddDays(365).Year" step="1" value="" /> </td>
-    </tr>
+  <tr>
+    <th class="p-1 pl-3 text-right"> Year: </th>
+    <td class="p-1 pr-3"> <input asp-for="Year" required type="number" min="1900" max="@DateTime.Now.AddDays(365).Year" step="1" value="" /> </td>
+  </tr>
 
     <tr>
       <th class="p-1 pl-3 text-right"> Make: </th>
-      <td class="p-1 pr-3"> <input asp-for="Make" required value="" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="Make" required /> </td>
     </tr>
 
     <tr>
       <th class="p-1 pl-3 text-right"> Model: </th>
-      <td class="p-1 pr-3"> <input asp-for="Model" required value="" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="Model" required /> </td>
     </tr>
 
     <tr>
       <th class="p-1 pl-3 text-right"> Color: </th>
-      <td class="p-1 pr-3"> <input asp-for="Color" value="" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="Color" /> </td>
     </tr>
 
     <tr>
@@ -49,37 +49,37 @@
 
     <tr>
       <th class="p-1 pl-3 text-right"> VIN: </th>
-      <td class="p-1 pr-3"> <input asp-for="Vin" value="" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="Vin" /> </td>
     </tr>
 
     <tr>
       <th class="p-1 pl-3 text-right"> Date Purchased: </th>
-      <td class="p-1 pr-3"> <input asp-for="DatePurchased" value="" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="DatePurchased" /> </td>
     </tr>
 
     <tr>
       <th class="p-1 pl-3 text-right"> Purchase Price: </th>
-      <td class="p-1 pr-3"> <input asp-for="PurchasePrice" type="number" min="0" step="1" value="" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="PurchasePrice" type="number" min="0" step="1" /> </td>
     </tr>
 
     <tr>
       <th class="p-1 pl-3 text-right"> Odometer When Purchased: </th>
-      <td class="p-1 pr-3"> <input asp-for="OdometerAtPurchase" type="number" min="0" step="1" value="" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="OdometerAtPurchase" type="number" min="0" step="1" /> </td>
     </tr>
 
     <tr>
       <th class="p-1 pl-3 text-right"> Date Sold: </th>
-      <td class="p-1 pr-3"> <input asp-for="DateSold" value="" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="DateSold" /> </td>
     </tr>
 
     <tr>
       <th class="p-1 pl-3 text-right"> Sale Price: </th>
-      <td class="p-1 pr-3"> <input asp-for="SalePrice" type="number" min="0" step="1" value="" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="SalePrice" type="number" min="0" step="1" /> </td>
     </tr>
 
     <tr>
       <th class="p-1 pl-3 text-right"> Odometer When Sold: </th>
-      <td class="p-1 pr-3"> <input asp-for="OdometerAtSale" type="number" min="0" step="1" value="" /> </td>
+      <td class="p-1 pr-3"> <input asp-for="OdometerAtSale" type="number" min="0" step="1" /> </td>
     </tr>
 
     <tr>

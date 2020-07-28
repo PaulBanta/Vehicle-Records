@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using VehicleRecords.Areas.Insurance.Data;
 using VehicleRecords.Models;
 
 namespace VehicleRecords
@@ -30,7 +31,8 @@ namespace VehicleRecords
          services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Environment.GetEnvironmentVariable("VehicleRecordsDbConnectionString")));
 
          services.AddScoped<IFillupRepository, EfFillupRepository>();
-         services.AddScoped<IMaintenanceRepairRepository, EfMaintenanceRepairRepository>(); 
+         services.AddScoped<IInsuranceRepository, EfInsuranceRepository>();
+         services.AddScoped<IMaintenanceRepairRepository, EfMaintenanceRepairRepository>();
          services.AddScoped<IUserRepository, EfUserRepository>();
          services.AddScoped<IVehicleRepository, EfVehicleRepository>();
 
@@ -69,6 +71,9 @@ namespace VehicleRecords
 
          app.UseEndpoints(endpoints =>
          {
+            endpoints.MapControllerRoute(
+                   name: "areas",
+                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{param?}");
             endpoints.MapControllerRoute(
                    name: "default",
                    pattern: "{controller=Home}/{action=Index}/{param?}");

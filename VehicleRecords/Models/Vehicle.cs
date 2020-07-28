@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using VehicleRecords.Areas.Insurance.Models;
 
 namespace VehicleRecords.Models
 {
@@ -61,6 +62,8 @@ namespace VehicleRecords.Models
       public User User { get; set; }
 
       public IEnumerable<Fillup> Fillups { get; set; }
+
+      public IEnumerable<Insurance> Insurance { get; set; }
 
       public IEnumerable<MaintenanceRepair> MaintenanceRepairs { get; set; }
    }

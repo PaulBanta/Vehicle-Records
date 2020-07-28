@@ -56,8 +56,9 @@ namespace VehicleRecords.Models
             return null;
          }
 
-         return _context.Vehicles.Include(f => f.Fillups)
-                                 .Include(f => f.MaintenanceRepairs)
+         return _context.Vehicles.Include(v => v.Fillups)
+                                 .Include(v => v.Insurance)
+                                 .Include(v => v.MaintenanceRepairs)
                                  .FirstOrDefault(v => v.Id == id && v.UserId == _userRepository.GetLoggedInUserId());
       }
 

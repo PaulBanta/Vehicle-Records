@@ -1,0 +1,56 @@
+﻿@model Vehicle
+
+<table class="border border-dark shadow">
+  <tr>
+    <td class="pt-3" colspan="7"> </td>
+  </tr>
+
+  <tr>
+    <td class="pl-3 pr-3 text-center" colspan="7">
+      <a asp-area="Insurance" asp-controller="Insurance" asp-action="Add" asp-route-vehicleId="@Model.Id" class="btn btn-sm btn-success">
+        New Insurance
+      </a>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="pl-4 pr-4" colspan="7"> <hr /> </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-center"> Date </th>
+    <th class="p-1 text-center"> Months </th>
+    <th class="p-1 text-center"> Company </th>
+    <th class="p-1 text-center"> Policy # </th>
+    <th class="p-1 text-center"> Coverage </th>
+    <th class="p-1 text-center"> Total Cost </th>
+    <th class="p-1 pr-3 text-center"> Actions </th>
+  </tr>
+
+  @foreach (Insurance i in Model.Insurance.OrderByDescending(i => i.Date))
+  {
+    <tr>
+      <td class="p-1 pl-3 text-center"> @i.Date?.ToString("MMM d yyyy") </td>
+      <td class="p-1 text-center"> @i.NumberOfMonths.ToString("N0") </td>
+      <td class="p-1 text-center"> @i.Company </td>
+      <td class="p-1 text-center"> @i.PolicyNumber </td>
+      <td class="p-1 text-center"> @i.Coverage </td>
+      <td class="p-1 text-center"> @i.TotalCost.ToString("C2") </td>
+      <td class="p-1 pr-3 text-center">
+        <a asp-area="Insurance" asp-controller="Insurance" asp-action="Detail" asp-route-id="@i.Id" class="btn btn-sm btn-primary">
+          Details
+        </a>
+        <a asp-area="Insurance" asp-controller="Insurance" asp-action="Edit" asp-route-id="@i.Id" class="btn btn-sm btn-warning">
+          Edit
+        </a>
+        <a asp-area="Insurance" asp-controller="Insurance" asp-action="Delete" asp-route-id="@i.Id" class="btn btn-sm btn-danger">
+          Delete
+        </a>
+      </td>
+    </tr>
+  }
+
+  <tr>
+    <td class="pb-2" colspan="7"> </td>
+  </tr>
+</table>

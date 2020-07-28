@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using VehicleRecords.Areas.Insurance.Models;
 
 namespace VehicleRecords.Models
 {
@@ -8,6 +9,8 @@ namespace VehicleRecords.Models
       //   F i e l d s   &   P r o p e r t i e s
 
       public DbSet<Fillup> Fillups { get; set; }
+
+      public DbSet<Insurance> Insurance { get; set; }
 
       public DbSet<MaintenanceRepair> MaintenanceRepairs { get; set; }
 
@@ -59,6 +62,12 @@ namespace VehicleRecords.Models
          modelBuilder.Entity<Fillup>()
             .Property(f => f.PricePerMile)
             .HasComputedColumnSql("iif( [TripOdometer] > 0, [TotalCost] / [TripOdometer], 999.9 )");
+
+         //   I n s u r a n c e
+
+         modelBuilder.Entity<Insurance>()
+            .Property(i => i.CostPerMonth)
+            .HasComputedColumnSql("iif( [NumberOfMonths] > 0, [TotalCost] / [NumberOfMonths], 999.9 )");
 
          //   U s e r s
 
