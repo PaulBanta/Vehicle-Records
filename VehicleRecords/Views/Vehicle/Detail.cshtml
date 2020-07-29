@@ -1,58 +1,55 @@
 ﻿@model Vehicle
 
-<table>
-  <tr>
-    <td class="align-top pr-3">
+<div class="container">
+  <div class="row">
+    <div class="col-md pb-3 pt-3">
       <partial name="DetailPartial" />
-    </td>
-    <td class="align-top pl-3">
-      <partial name="CostSummaryPartial" />
-    </td>
-  </tr>
-
-  <tr>
-    <td class="pb-3 pt-3 text-center" colspan="2">
+      <br />
       <a asp-action="Index" asp-route-id="@Model.Id" class="btn btn-sm btn-info"> Back </a>
-    </td>
-  </tr>
-</table>
+    </div>
+    <div class="col-md pb-3 pt-3">
+      <partial name="CostSummaryPartial" />
+    </div>
+  </div>
 
-<br />
+  <div class="row">
+    <div class="col-md pb-3 pt-3">
+    </div>
+  </div>
 
-<div>
-  <details class="d-inline-block" open>
-    <summary> Fillups </summary>
-    @Html.Partial("~/Areas/Fillups/Views/Fillup/ListPartial.cshtml")
-  </details>
-</div>
+  <div class="row">
+    <div class="col-md pb-3 pt-3">
+      <details class="d-inline-block" open>
+        <summary> Fillups </summary>
+        @Html.Partial("~/Areas/Fillups/Views/Fillup/ListPartial.cshtml")
+      </details>
+    </div>
+  </div>
 
-<br />
+  <div class="row">
+    <div class="col-md pb-3 pt-3">
+      <details class="d-inline-block">
+        <summary> Maintenance &amp; Repairs </summary>
+        @Html.Partial("~/Areas/Maintenance/Views/Maintenance/ListPartial.cshtml")
+      </details>
+    </div>
+  </div>
 
-<div>
-  <details class="d-inline-block">
-    <summary> Maintenance &amp; Repairs </summary>
-    @Html.Partial("~/Areas/Maintenance/Views/Maintenance/ListPartial.cshtml")
-  </details>
-</div>
+  <div class="row">
+    <div class="col-md pb-3 pt-3">
+      <details class="d-inline-block">
+        <summary> Insurance </summary>
+        @Html.Partial("~/Areas/Insurance/Views/Insurance/ListPartial.cshtml")
+      </details>
+    </div>
+  </div>
 
-<br />
-
-<div>
-  <details class="d-inline-block">
-    <summary> Insurance </summary>
-    @Html.Partial("~/Areas/Insurance/Views/Insurance/ListPartial.cshtml")
-  </details>
-</div>
-
-<br />
-
-<div>
-  <details class="d-inline-block">
-    <summary> Registration </summary>
-    <table class="border border-dark shadow">
-      <tr>
-        <th class="pb-2 pl-3 pr-3 pt-2 text-center"> Coming Soon </th>
-      </tr>
-    </table>
-  </details>
+  <div class="row">
+    <div class="col-md pb-3 pt-3">
+      <details class="d-inline-block">
+        <summary> Registration </summary>
+        <h3> Coming Soon </h3>
+      </details>
+    </div>
+  </div>
 </div>
