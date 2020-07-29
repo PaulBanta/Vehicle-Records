@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using VehicleRecords.Areas.Fillups.Models;
 using VehicleRecords.Models;
 
-namespace VehicleRecords.Areas.Fillups.Data
+namespace VehicleRecords.Data
 {
    public class EfFillupRepository
       : IFillupRepository

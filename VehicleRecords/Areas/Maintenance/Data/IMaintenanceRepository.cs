@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace VehicleRecords.Areas.Maintenance.Data
+namespace VehicleRecords.Data
 {
    public interface IMaintenanceRepository
    {

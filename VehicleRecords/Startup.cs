@@ -4,11 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using VehicleRecords.Areas.Fillups.Data;
-using VehicleRecords.Areas.Insurance.Data;
-using VehicleRecords.Areas.Maintenance.Data;
-using VehicleRecords.Models;
+using VehicleRecords.Data;
 
 namespace VehicleRecords
 {
@@ -30,11 +26,12 @@ namespace VehicleRecords
       public void ConfigureServices(IServiceCollection services)
       {
          // services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_configuration.GetConnectionString("DefaultConnection")));
-         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Environment.GetEnvironmentVariable("VehicleRecordsDbConnectionString")));
+         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(System.Environment.GetEnvironmentVariable("VehicleRecordsDbConnectionString")));
 
          services.AddScoped<IFillupRepository, EfFillupRepository>();
          services.AddScoped<IInsuranceRepository, EfInsuranceRepository>();
          services.AddScoped<IMaintenanceRepository, EfMaintenanceRepository>();
+         services.AddScoped<IRegistrationRepository, EfRegistrationRepository>();
          services.AddScoped<IUserRepository, EfUserRepository>();
          services.AddScoped<IVehicleRepository, EfVehicleRepository>();
 

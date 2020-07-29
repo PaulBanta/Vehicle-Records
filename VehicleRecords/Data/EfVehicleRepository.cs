@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using VehicleRecords.Models;
 
-namespace VehicleRecords.Models
+namespace VehicleRecords.Data
 {
    public class EfVehicleRepository
       : IVehicleRepository
@@ -59,6 +60,7 @@ namespace VehicleRecords.Models
          return _context.Vehicles.Include(v => v.Fillups)
                                  .Include(v => v.Insurance)
                                  .Include(v => v.Maintenance)
+                                 .Include(v => v.Registrations)
                                  .FirstOrDefault(v => v.Id == id && v.UserId == _userRepository.GetLoggedInUserId());
       }
 

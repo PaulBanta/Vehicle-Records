@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using VehicleRecords.Areas.Fillups.Models;
-using VehicleRecords.Areas.Insurance.Models;
-using VehicleRecords.Areas.Maintenance.Models;
+using VehicleRecords.Models;
 
-namespace VehicleRecords.Models
+namespace VehicleRecords.Data
 {
    public class AppDbContext
       : DbContext
@@ -15,6 +13,8 @@ namespace VehicleRecords.Models
       public DbSet<Insurance> Insurance { get; set; }
 
       public DbSet<Maintenance> Maintenance { get; set; }
+
+      public DbSet<Registration> Registration { get; set; }
 
       public DbSet<User> Users { get; set; }
 

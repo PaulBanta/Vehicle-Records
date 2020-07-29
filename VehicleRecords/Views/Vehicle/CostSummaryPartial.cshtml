@@ -6,6 +6,7 @@
   double totalFillups = Model.Fillups.Sum(f => f.TotalCost);
   double totalInsurance = Model.Insurance.Sum(i => i.TotalCost);
   double totalMaintenance = Model.Maintenance.Sum(mr => mr.TotalCost);
+  double totalRegistration = Model.Registrations.Sum(r => r.TotalCost);
 }
 
 <table class="border border-dark shadow">
@@ -62,7 +63,7 @@
   <tr>
     <th class="p-1 pl-3 text-right"> Registration: </th>
     <td class="p-1 pr-3">
-      Coming Soon
+      @totalRegistration.ToString("C2")
     </td>
   </tr>
 
@@ -73,7 +74,7 @@
   <tr>
     <th class="p-1 pl-3 text-right"> Total: </th>
     <td class="p-1 pr-3">
-      @((purchasePrice + totalFillups + totalInsurance + totalMaintenance - salePrice).ToString("C0"))
+      @((purchasePrice + totalFillups + totalInsurance + totalMaintenance + totalRegistration - salePrice).ToString("C0"))
     </td>
   </tr>
 </table>

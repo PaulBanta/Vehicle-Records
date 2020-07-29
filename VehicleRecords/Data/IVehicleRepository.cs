@@ -1,6 +1,7 @@
 ﻿using System.Linq;
+using VehicleRecords.Models;
 
-namespace VehicleRecords.Models
+namespace VehicleRecords.Data
 {
    public interface IVehicleRepository
    {

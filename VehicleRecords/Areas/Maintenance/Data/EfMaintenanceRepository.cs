@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using VehicleRecords.Models;
 
-namespace VehicleRecords.Areas.Maintenance.Data
+namespace VehicleRecords.Data
 {
    public class EfMaintenanceRepository
       : IMaintenanceRepository

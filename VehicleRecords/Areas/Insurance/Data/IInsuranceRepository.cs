@@ -9,7 +9,7 @@
 **       word(s) "Model." in front of Insurance.
 */
 
-namespace VehicleRecords.Areas.Insurance.Data
+namespace VehicleRecords.Data
 {
    public interface IInsuranceRepository
    {

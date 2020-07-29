@@ -1,0 +1,50 @@
+﻿@model Vehicle
+
+<table class="border border-dark shadow">
+  <tr>
+    <td class="pt-3" colspan="4"> </td>
+  </tr>
+
+  <tr>
+    <td class="pl-3 pr-3 text-center" colspan="4">
+      <a asp-area="Registrations" asp-controller="Registration" asp-action="Add" asp-route-vehicleId="@Model.Id" class="btn btn-sm btn-success">
+        New Registration
+      </a>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="pl-4 pr-4" colspan="4"> <hr /> </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-center"> Date </th>
+    <th class="p-1 text-center"> State </th>
+    <th class="p-1 text-center"> Total Cost </th>
+    <th class="p-1 pr-3 text-center"> Actions </th>
+  </tr>
+
+  @foreach (Registration r in Model.Registrations.OrderByDescending(r => r.Date).ThenByDescending(r => r.Id))
+  {
+    <tr>
+      <td class="p-1 pl-3 text-center"> @r.Date?.ToString("MMM d yyyy") </td>
+      <td class="p-1 text-center"> @r.State </td>
+      <td class="p-1 text-center"> @r.TotalCost.ToString("C2") </td>
+      <td class="p-1 pr-3 text-center">
+        <a asp-area="Registrations" asp-controller="Registration" asp-action="Detail" asp-route-id="@r.Id" class="btn btn-sm btn-primary">
+          Details
+        </a>
+        <a asp-area="Registrations" asp-controller="Registration" asp-action="Edit" asp-route-id="@r.Id" class="btn btn-sm btn-warning">
+          Edit
+        </a>
+        <a asp-area="Registrations" asp-controller="Registration" asp-action="Delete" asp-route-id="@r.Id" class="btn btn-sm btn-danger">
+          Delete
+        </a>
+      </td>
+    </tr>
+  }
+
+  <tr>
+    <td class="pb-2" colspan="4"> </td>
+  </tr>
+</table>

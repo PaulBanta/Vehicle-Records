@@ -2,9 +2,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using VehicleRecords.Models;
 
-namespace VehicleRecords.Areas.Fillups.Models
+namespace VehicleRecords.Models
 {
    [Table("Fillup", Schema = "VehRec")]
    public class Fillup

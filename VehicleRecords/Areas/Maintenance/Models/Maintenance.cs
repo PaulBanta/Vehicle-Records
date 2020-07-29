@@ -1,9 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using VehicleRecords.Models;
 
-namespace VehicleRecords.Areas.Maintenance.Models
+namespace VehicleRecords.Models
 {
    [Table("Maintenance", Schema = "VehRec")]
    public class Maintenance // & Repairs

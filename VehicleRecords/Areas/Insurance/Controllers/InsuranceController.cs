@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using VehicleRecords.Areas.Insurance.Data;
-using VehicleRecords.Areas.Insurance.Models;
+using VehicleRecords.Data;
+using VehicleRecords.Models;
 
 namespace VehicleRecords.Controllers
 {

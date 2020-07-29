@@ -12,7 +12,7 @@ using VehicleRecords.Models;
 **       word(s) "Model." in front of Insurance.
 */
 
-namespace VehicleRecords.Areas.Insurance.Data
+namespace VehicleRecords.Data
 {
    public class EfInsuranceRepository
       : IInsuranceRepository

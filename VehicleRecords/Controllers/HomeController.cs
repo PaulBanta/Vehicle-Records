@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using VehicleRecords.Data;
 using VehicleRecords.Models;
 
 namespace VehicleRecords.Controllers

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using VehicleRecords.Areas.Fillups.Models;
+using VehicleRecords.Models;
 
-namespace VehicleRecords.Areas.Fillups.Data
+namespace VehicleRecords.Data
 {
    public interface IFillupRepository
    {

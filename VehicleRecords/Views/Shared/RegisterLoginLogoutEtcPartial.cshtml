@@ -1,4 +1,6 @@
-﻿@inject IUserRepository _userRepository
+﻿@using VehicleRecords.Data
+
+@inject IUserRepository _userRepository
 
 @if (_userRepository.IsUserLoggedIn())
 {
