@@ -3,16 +3,19 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace VehicleRecords.Migrations
 {
-    public partial class UserVehicleFillupMaintenanceInsurance : Migration
+    public partial class UserVehicleFillupInsuranceMaintenance : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
                 name: "VehRec");
 
+            migrationBuilder.EnsureSchema(
+                name: "Account");
+
             migrationBuilder.CreateTable(
                 name: "User",
-                schema: "VehRec",
+                schema: "Account",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -51,7 +54,7 @@ namespace VehicleRecords.Migrations
                     table.ForeignKey(
                         name: "FK_Vehicle_User_UserId",
                         column: x => x.UserId,
-                        principalSchema: "VehRec",
+                        principalSchema: "Account",
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -118,7 +121,7 @@ namespace VehicleRecords.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MaintenanceRepair",
+                name: "Maintenance",
                 schema: "VehRec",
                 columns: table => new
                 {
@@ -134,9 +137,9 @@ namespace VehicleRecords.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MaintenanceRepair", x => x.Id);
+                    table.PrimaryKey("PK_Maintenance", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MaintenanceRepair_Vehicle_VehicleId",
+                        name: "FK_Maintenance_Vehicle_VehicleId",
                         column: x => x.VehicleId,
                         principalSchema: "VehRec",
                         principalTable: "Vehicle",
@@ -145,16 +148,16 @@ namespace VehicleRecords.Migrations
                 });
 
             migrationBuilder.InsertData(
-                schema: "VehRec",
+                schema: "Account",
                 table: "User",
                 columns: new[] { "Id", "EmailAddress", "Password" },
-                values: new object[] { 1, "85FDFD0FB6DFE3AFED031983A1EAEC69ADB8E91CFCEB9FA3EBFAA6984C1E564541CCA57A965FD4C6ACF6632EB0130F42F70E4E52EA038B111B6E16461F2165CD", "0389807F1DB834156EDD82E92D8EBCED3834A457F52B33072B697A9F12C65A9F0EE0D05C0555FA1EDE493E7B168AAA5434DFDE3F4B18E6BD47EFE9E84E171FF6" });
+                values: new object[] { 1, "85FDFD0FB6DFE3AFED031983A1EAEC69ADB8E91CFCEB9FA3EBFAA6984C1E564541CCA57A965FD4C6ACF6632EB0130F42F70E4E52EA038B111B6E16461F2165CD", "87D77AE90DAA4EC8F1FB1C144D0D851785720688A4C52D9D6EC223A631BA5578AA2F18977BB40A018DCE92A95810BBEDB33E94E528EB99EC5A61348485C86853" });
 
             migrationBuilder.InsertData(
-                schema: "VehRec",
+                schema: "Account",
                 table: "User",
                 columns: new[] { "Id", "EmailAddress", "Password" },
-                values: new object[] { 2, "4F988DDAFEE8760D1B56532E2C1C356EAC82DF48EA37F47E86F93230032236C64A0183C9C8670DC9D68D1F5F52E1A6F474FB88ACCA637DD0592894AB442EAA12", "211B75AF9B9A156488BC8DC2D576F2E0DCF52A79C077F7C250C74683CED51350E245C0E9290EEBD5B06208FF644F964C4E74604460F29005D9A9FE982348BFA7" });
+                values: new object[] { 2, "4F988DDAFEE8760D1B56532E2C1C356EAC82DF48EA37F47E86F93230032236C64A0183C9C8670DC9D68D1F5F52E1A6F474FB88ACCA637DD0592894AB442EAA12", "A7F059EAF5955D7BDDDE7E4F5C245A62E66FFFF88C2001A511A6D7E7B6F4F30F94EFF44902FC217E7B27A38D4A9594FBEBA09760DBD659F97830E5251FCC4914" });
 
             migrationBuilder.InsertData(
                 schema: "VehRec",
@@ -188,7 +191,7 @@ namespace VehicleRecords.Migrations
 
             migrationBuilder.InsertData(
                 schema: "VehRec",
-                table: "MaintenanceRepair",
+                table: "Maintenance",
                 columns: new[] { "Id", "BriefDescriptionOfWork", "Date", "FullDescriptionOfWork", "Odometer", "PerformedBy", "TotalCost", "VehicleId" },
                 values: new object[,]
                 {
@@ -197,6 +200,13 @@ namespace VehicleRecords.Migrations
                 Labor: $245
                 Warranty: 6 Months / 6,000 Miles", 200150, "Woodmoor Conoco", 395m, 1 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_EmailAddress",
+                schema: "Account",
+                table: "User",
+                column: "EmailAddress",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Fillup_VehicleId",
@@ -211,17 +221,10 @@ namespace VehicleRecords.Migrations
                 column: "VehicleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MaintenanceRepair_VehicleId",
+                name: "IX_Maintenance_VehicleId",
                 schema: "VehRec",
-                table: "MaintenanceRepair",
+                table: "Maintenance",
                 column: "VehicleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_User_EmailAddress",
-                schema: "VehRec",
-                table: "User",
-                column: "EmailAddress",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehicle_UserId",
@@ -241,7 +244,7 @@ namespace VehicleRecords.Migrations
                 schema: "VehRec");
 
             migrationBuilder.DropTable(
-                name: "MaintenanceRepair",
+                name: "Maintenance",
                 schema: "VehRec");
 
             migrationBuilder.DropTable(
@@ -250,7 +253,7 @@ namespace VehicleRecords.Migrations
 
             migrationBuilder.DropTable(
                 name: "User",
-                schema: "VehRec");
+                schema: "Account");
         }
     }
 }

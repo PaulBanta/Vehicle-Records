@@ -19,52 +19,7 @@ namespace VehicleRecords.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("VehicleRecords.Areas.Insurance.Models.Insurance", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Company")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
-
-                    b.Property<decimal>("CostPerMonth")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("decimal(7, 2)")
-                        .HasComputedColumnSql("iif( [NumberOfMonths] > 0, [TotalCost] / [NumberOfMonths], 999.9 )");
-
-                    b.Property<string>("Coverage")
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
-
-                    b.Property<DateTime?>("Date")
-                        .IsRequired()
-                        .HasColumnType("date");
-
-                    b.Property<int>("NumberOfMonths")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PolicyNumber")
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
-
-                    b.Property<decimal>("TotalCost")
-                        .HasColumnType("decimal(7, 2)");
-
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("Insurance","VehRec");
-                });
-
-            modelBuilder.Entity("VehicleRecords.Models.Fillup", b =>
+            modelBuilder.Entity("VehicleRecords.Areas.Fillups.Models.Fillup", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -193,7 +148,52 @@ namespace VehicleRecords.Migrations
                         });
                 });
 
-            modelBuilder.Entity("VehicleRecords.Models.MaintenanceRepair", b =>
+            modelBuilder.Entity("VehicleRecords.Areas.Insurance.Models.Insurance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<decimal>("CostPerMonth")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("decimal(7, 2)")
+                        .HasComputedColumnSql("iif( [NumberOfMonths] > 0, [TotalCost] / [NumberOfMonths], 999.9 )");
+
+                    b.Property<string>("Coverage")
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<DateTime?>("Date")
+                        .IsRequired()
+                        .HasColumnType("date");
+
+                    b.Property<int>("NumberOfMonths")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PolicyNumber")
+                        .HasColumnType("nvarchar(40)")
+                        .HasMaxLength(40);
+
+                    b.Property<decimal>("TotalCost")
+                        .HasColumnType("decimal(7, 2)");
+
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("Insurance","VehRec");
+                });
+
+            modelBuilder.Entity("VehicleRecords.Areas.Maintenance.Models.Maintenance", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -231,7 +231,7 @@ namespace VehicleRecords.Migrations
 
                     b.HasIndex("VehicleId");
 
-                    b.ToTable("MaintenanceRepair","VehRec");
+                    b.ToTable("Maintenance","VehRec");
 
                     b.HasData(
                         new
@@ -281,20 +281,20 @@ Warranty: 6 Months / 6,000 Miles",
                     b.HasIndex("EmailAddress")
                         .IsUnique();
 
-                    b.ToTable("User","VehRec");
+                    b.ToTable("User","Account");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             EmailAddress = "85FDFD0FB6DFE3AFED031983A1EAEC69ADB8E91CFCEB9FA3EBFAA6984C1E564541CCA57A965FD4C6ACF6632EB0130F42F70E4E52EA038B111B6E16461F2165CD",
-                            Password = "0389807F1DB834156EDD82E92D8EBCED3834A457F52B33072B697A9F12C65A9F0EE0D05C0555FA1EDE493E7B168AAA5434DFDE3F4B18E6BD47EFE9E84E171FF6"
+                            Password = "87D77AE90DAA4EC8F1FB1C144D0D851785720688A4C52D9D6EC223A631BA5578AA2F18977BB40A018DCE92A95810BBEDB33E94E528EB99EC5A61348485C86853"
                         },
                         new
                         {
                             Id = 2,
                             EmailAddress = "4F988DDAFEE8760D1B56532E2C1C356EAC82DF48EA37F47E86F93230032236C64A0183C9C8670DC9D68D1F5F52E1A6F474FB88ACCA637DD0592894AB442EAA12",
-                            Password = "211B75AF9B9A156488BC8DC2D576F2E0DCF52A79C077F7C250C74683CED51350E245C0E9290EEBD5B06208FF644F964C4E74604460F29005D9A9FE982348BFA7"
+                            Password = "A7F059EAF5955D7BDDDE7E4F5C245A62E66FFFF88C2001A511A6D7E7B6F4F30F94EFF44902FC217E7B27A38D4A9594FBEBA09760DBD659F97830E5251FCC4914"
                         });
                 });
 
@@ -407,6 +407,15 @@ Warranty: 6 Months / 6,000 Miles",
                         });
                 });
 
+            modelBuilder.Entity("VehicleRecords.Areas.Fillups.Models.Fillup", b =>
+                {
+                    b.HasOne("VehicleRecords.Models.Vehicle", "Vehicle")
+                        .WithMany("Fillups")
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("VehicleRecords.Areas.Insurance.Models.Insurance", b =>
                 {
                     b.HasOne("VehicleRecords.Models.Vehicle", "Vehicle")
@@ -416,16 +425,7 @@ Warranty: 6 Months / 6,000 Miles",
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("VehicleRecords.Models.Fillup", b =>
-                {
-                    b.HasOne("VehicleRecords.Models.Vehicle", "Vehicle")
-                        .WithMany("Fillups")
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("VehicleRecords.Models.MaintenanceRepair", b =>
+            modelBuilder.Entity("VehicleRecords.Areas.Maintenance.Models.Maintenance", b =>
                 {
                     b.HasOne("VehicleRecords.Models.Vehicle", "Vehicle")
                         .WithMany("MaintenanceRepairs")

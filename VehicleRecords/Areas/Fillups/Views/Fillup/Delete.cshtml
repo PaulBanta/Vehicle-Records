@@ -89,7 +89,7 @@
         <input type="hidden" asp-for="Id" value="@Model.Id" />
         <input type="hidden" asp-for="VehicleId" value="@Model.VehicleId" />
         <input type="submit" class="btn btn-sm btn-danger" value="Delete" />
-        <a asp-controller="Vehicle" asp-action="Detail" asp-route-id="@Model.VehicleId" class="btn btn-sm btn-info">
+        <a asp-action="Detail" asp-route-id="@Model.Id" class="btn btn-sm btn-info">
           Cancel
         </a>
       </form>

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VehicleRecords.Models
 {
-   [Table("User", Schema = "VehRec")]
+   [Table("User", Schema = "Account")]
    public class User
    {
       public int Id { get; set; }

@@ -40,7 +40,7 @@ namespace VehicleRecords.Controllers
          if (ModelState.IsValid)
          {
             _repository.AddInsurance(insurance);
-            return Redirect("/Vehicle/Detail/?id=" + insurance.VehicleId);
+            return RedirectToAction("Detail", new { id = insurance.Id });
          }
 
          return View(insurance);
@@ -77,7 +77,7 @@ namespace VehicleRecords.Controllers
          if (ModelState.IsValid)
          {
             _repository.UpdateInsurancePutEntire(insurance, insurance.Id);
-            return Redirect("/Vehicle/Detail/?id=" + insurance.VehicleId);
+            return RedirectToAction("Detail", new { id = insurance.Id });
          }
          return View(insurance);
       }
@@ -99,7 +99,7 @@ namespace VehicleRecords.Controllers
       public IActionResult Delete(Insurance insurance)
       {
          _repository.DeleteInsurance(insurance.Id);
-         return Redirect("/Vehicle/Detail/?id=" + insurance.VehicleId);
+         return Redirect($"/Vehicle/Detail/?id={insurance.VehicleId}");
       }
    }
 }

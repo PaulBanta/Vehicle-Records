@@ -5,7 +5,7 @@
   double salePrice = Convert.ToDouble(Model.SalePrice);
   double totalFillups = Model.Fillups.Sum(f => f.TotalCost);
   double totalInsurance = Model.Insurance.Sum(i => i.TotalCost);
-  double totalMaintenance = Model.MaintenanceRepairs.Sum(mr => mr.TotalCost);
+  double totalMaintenance = Model.Maintenance.Sum(mr => mr.TotalCost);
 }
 
 <table class="border border-dark shadow">

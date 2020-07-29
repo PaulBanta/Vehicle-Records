@@ -22,7 +22,7 @@
 <div>
   <details class="d-inline-block" open>
     <summary> Fillups </summary>
-    <partial name="FillupListPartial" />
+    @Html.Partial("~/Areas/Fillups/Views/Fillup/ListPartial.cshtml")
   </details>
 </div>
 
@@ -31,7 +31,7 @@
 <div>
   <details class="d-inline-block">
     <summary> Maintenance &amp; Repairs </summary>
-    <partial name="MaintenanceRepairListPartial" />
+    @Html.Partial("~/Areas/Maintenance/Views/Maintenance/ListPartial.cshtml")
   </details>
 </div>
 
@@ -40,7 +40,7 @@
 <div>
   <details class="d-inline-block">
     <summary> Insurance </summary>
-    <partial name="InsuranceListPartial" />
+    @Html.Partial("~/Areas/Insurance/Views/Insurance/ListPartial.cshtml")
   </details>
 </div>
 

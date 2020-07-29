@@ -1,0 +1,54 @@
+﻿@model Vehicle
+
+<table class="border border-dark shadow">
+  <tr>
+    <td class="pt-3" colspan="6"> </td>
+  </tr>
+
+  <tr>
+    <td class="pl-3 pr-3 text-center" colspan="6">
+      <a asp-area="Maintenance" asp-controller="Maintenance" asp-action="Add" asp-route-vehicleId="@Model.Id" class="btn btn-sm btn-success">
+        New Maintenance / Repair
+      </a>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="pl-4 pr-4" colspan="6"> <hr /> </td>
+  </tr>
+
+  <tr>
+    <th class="p-1 pl-3 text-center"> Date </th>
+    <th class="p-1 text-center"> Performed By </th>
+    <th class="p-1 text-center"> Work Done </th>
+    <th class="p-1 text-center"> Odometer </th>
+    <th class="p-1 text-center"> Total Cost </th>
+    <th class="p-1 pr-3 text-center"> Actions </th>
+  </tr>
+
+  @foreach (Maintenance m in Model.Maintenance.OrderByDescending(m => m.Date).ThenByDescending(m => m.Id))
+  {
+    <tr>
+      <td class="p-1 pl-3 text-center"> @m.Date?.ToString("MMM d yyyy") </td>
+      <td class="p-1 text-center"> @m.PerformedBy </td>
+      <td class="p-1 text-center"> @m.BriefDescriptionOfWork </td>
+      <td class="p-1 text-center"> @m.Odometer?.ToString("N0") </td>
+      <td class="p-1 text-center"> @m.TotalCost.ToString("C2") </td>
+      <td class="p-1 pr-3 text-center">
+        <a asp-area="Maintenance" asp-controller="Maintenance" asp-action="Detail" asp-route-id="@m.Id" class="btn btn-sm btn-primary">
+          Details
+        </a>
+        <a asp-area="Maintenance" asp-controller="Maintenance" asp-action="Edit" asp-route-id="@m.Id" class="btn btn-sm btn-warning">
+          Edit
+        </a>
+        <a asp-area="Maintenance" asp-controller="Maintenance" asp-action="Delete" asp-route-id="@m.Id" class="btn btn-sm btn-danger">
+          Delete
+        </a>
+      </td>
+    </tr>
+  }
+
+  <tr>
+    <td class="pb-2" colspan="6"> </td>
+  </tr>
+</table>

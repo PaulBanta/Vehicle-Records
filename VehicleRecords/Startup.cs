@@ -5,7 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using VehicleRecords.Areas.Fillups.Data;
 using VehicleRecords.Areas.Insurance.Data;
+using VehicleRecords.Areas.Maintenance.Data;
 using VehicleRecords.Models;
 
 namespace VehicleRecords
@@ -32,7 +34,7 @@ namespace VehicleRecords
 
          services.AddScoped<IFillupRepository, EfFillupRepository>();
          services.AddScoped<IInsuranceRepository, EfInsuranceRepository>();
-         services.AddScoped<IMaintenanceRepairRepository, EfMaintenanceRepairRepository>();
+         services.AddScoped<IMaintenanceRepository, EfMaintenanceRepository>();
          services.AddScoped<IUserRepository, EfUserRepository>();
          services.AddScoped<IVehicleRepository, EfVehicleRepository>();
 
@@ -73,10 +75,10 @@ namespace VehicleRecords
          {
             endpoints.MapControllerRoute(
                    name: "areas",
-                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{param?}");
+                   pattern: "{area:exists}/{controller=Home}/{action=Index}");
             endpoints.MapControllerRoute(
                    name: "default",
-                   pattern: "{controller=Home}/{action=Index}/{param?}");
+                   pattern: "{controller=Home}/{action=Index}");
          });
       }
    }

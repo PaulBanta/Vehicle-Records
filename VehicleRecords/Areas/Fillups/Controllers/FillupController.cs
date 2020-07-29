@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using VehicleRecords.Models;
+using VehicleRecords.Areas.Fillups.Data;
+using VehicleRecords.Areas.Fillups.Models;
 
 namespace VehicleRecords.Controllers
 {
+   [Area("Fillups")]
    public class FillupController
       : Controller
    {
@@ -38,7 +40,7 @@ namespace VehicleRecords.Controllers
          if (ModelState.IsValid)
          {
             _repository.AddFillup(fillup);
-            return RedirectToAction("Detail", "Vehicle", new { id = fillup.VehicleId });
+            return RedirectToAction("Detail", new { id = fillup.Id });
          }
 
          return View(fillup);
@@ -51,7 +53,7 @@ namespace VehicleRecords.Controllers
          Fillup fillup = _repository.GetFillupById(id);
          if (fillup == null)
          {
-            return RedirectToAction("Index", "Vehicle");
+            return Redirect("/Vehicle/Index");
          }
          return View(fillup);
       }
@@ -64,7 +66,7 @@ namespace VehicleRecords.Controllers
          Fillup fillup = _repository.GetFillupById(id);
          if (fillup == null)
          {
-            return RedirectToAction("Index", "Vehicle");
+            return Redirect("/Vehicle/Index");
          }
          return View(fillup);
       }
@@ -75,7 +77,7 @@ namespace VehicleRecords.Controllers
          if (ModelState.IsValid)
          {
             _repository.UpdateFillupPutEntire(fillup, fillup.Id);
-            return RedirectToAction("Detail", "Vehicle", new { id = fillup.VehicleId });
+            return RedirectToAction("Detail", new { id = fillup.Id });
          }
          return View(fillup);
       }
@@ -88,7 +90,7 @@ namespace VehicleRecords.Controllers
          Fillup fillup = _repository.GetFillupById(id);
          if (fillup == null)
          {
-            return RedirectToAction("Index", "Vehicle");
+            return Redirect("/Vehicle/Index");
          }
          return View(fillup);
       }
@@ -97,7 +99,7 @@ namespace VehicleRecords.Controllers
       public IActionResult Delete(Fillup fillup)
       {
          _repository.DeleteFillup(fillup.Id);
-         return RedirectToAction("Detail", "Vehicle", new { id = fillup.VehicleId });
+         return Redirect("/Vehicle/Detail/?id=" + fillup.VehicleId);
       }
    }
 }

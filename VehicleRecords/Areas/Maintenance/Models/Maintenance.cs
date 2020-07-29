@@ -1,11 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using VehicleRecords.Models;
 
-namespace VehicleRecords.Models
+namespace VehicleRecords.Areas.Maintenance.Models
 {
-   [Table("MaintenanceRepair", Schema = "VehRec")]
-   public class MaintenanceRepair
+   [Table("Maintenance", Schema = "VehRec")]
+   public class Maintenance // & Repairs
    {
       public int Id { get; set; }
 

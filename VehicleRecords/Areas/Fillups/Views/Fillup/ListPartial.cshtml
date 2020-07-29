@@ -7,7 +7,7 @@
 
   <tr>
     <td class="pl-3 pr-3 text-center" colspan="7">
-      <a asp-controller="Fillup" asp-action="Add" asp-route-vehicleId="@Model.Id" class="btn btn-sm btn-success">
+      <a asp-area="Fillups" asp-controller="Fillup" asp-action="Add" asp-route-vehicleId="@Model.Id" class="btn btn-sm btn-success">
         New Fillup
       </a>
     </td>
@@ -47,13 +47,13 @@
       @* <td class="p-1 text-center"> @f.PricePerGallon.ToString("C3") </td> *@
       @* <td class="p-1 text-center"> @f.PricePerMile.ToString("C3") </td> *@
       <td class="p-1 pr-3 text-center">
-        <a asp-controller="Fillup" asp-action="Detail" asp-route-id="@f.Id" class="btn btn-sm btn-primary">
+        <a asp-area="Fillups" asp-controller="Fillup" asp-action="Detail" asp-route-id="@f.Id" class="btn btn-sm btn-primary">
           Details
         </a>
-        <a asp-controller="Fillup" asp-action="Edit" asp-route-id="@f.Id" class="btn btn-sm btn-warning">
+        <a asp-area="Fillups" asp-controller="Fillup" asp-action="Edit" asp-route-id="@f.Id" class="btn btn-sm btn-warning">
           Edit
         </a>
-        <a asp-controller="Fillup" asp-action="Delete" asp-route-id="@f.Id" class="btn btn-sm btn-danger">
+        <a asp-area="Fillups" asp-controller="Fillup" asp-action="Delete" asp-route-id="@f.Id" class="btn btn-sm btn-danger">
           Delete
         </a>
       </td>

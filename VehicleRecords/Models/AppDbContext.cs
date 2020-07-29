@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using VehicleRecords.Areas.Fillups.Models;
 using VehicleRecords.Areas.Insurance.Models;
+using VehicleRecords.Areas.Maintenance.Models;
 
 namespace VehicleRecords.Models
 {
@@ -12,7 +14,7 @@ namespace VehicleRecords.Models
 
       public DbSet<Insurance> Insurance { get; set; }
 
-      public DbSet<MaintenanceRepair> MaintenanceRepairs { get; set; }
+      public DbSet<Maintenance> Maintenance { get; set; }
 
       public DbSet<User> Users { get; set; }
 
@@ -74,8 +76,8 @@ namespace VehicleRecords.Models
          modelBuilder.Entity<User>().HasData(new User
          {
             Id = 1,
-            EmailAddress = "87D77AE90DAA4EC8F1FB1C144D0D851785720688A4C52D9D6EC223A631BA5578AA2F18977BB40A018DCE92A95810BBEDB33E94E528EB99EC5A61348485C86853",
-            Password = "0389807F1DB834156EDD82E92D8EBCED3834A457F52B33072B697A9F12C65A9F0EE0D05C0555FA1EDE493E7B168AAA5434DFDE3F4B18E6BD47EFE9E84E171FF6"
+            EmailAddress = "85FDFD0FB6DFE3AFED031983A1EAEC69ADB8E91CFCEB9FA3EBFAA6984C1E564541CCA57A965FD4C6ACF6632EB0130F42F70E4E52EA038B111B6E16461F2165CD",
+            Password = "87D77AE90DAA4EC8F1FB1C144D0D851785720688A4C52D9D6EC223A631BA5578AA2F18977BB40A018DCE92A95810BBEDB33E94E528EB99EC5A61348485C86853"
          });
 
          modelBuilder.Entity<User>().HasData(new User
@@ -195,7 +197,7 @@ namespace VehicleRecords.Models
 
          //   M a i n t e n a n c e   &   R e p a i r s
 
-         modelBuilder.Entity<MaintenanceRepair>().HasData(new MaintenanceRepair
+         modelBuilder.Entity<Maintenance>().HasData(new Maintenance
          {
             Id = 1,
             Date = new System.DateTime(2020, 7, 2),
@@ -206,7 +208,7 @@ namespace VehicleRecords.Models
             VehicleId = 1
          });
 
-         modelBuilder.Entity<MaintenanceRepair>().HasData(new MaintenanceRepair
+         modelBuilder.Entity<Maintenance>().HasData(new Maintenance
          {
             Id = 2,
             Date = new System.DateTime(2020, 7, 18),
