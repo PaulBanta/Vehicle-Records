@@ -71,6 +71,8 @@ namespace VehicleRecords.Data
             .Property(i => i.CostPerMonth)
             .HasComputedColumnSql("iif( [NumberOfMonths] > 0, [TotalCost] / [NumberOfMonths], 999.9 )");
 
+         // /*
+         
          //   U s e r s
 
          modelBuilder.Entity<User>().HasData(new User
@@ -86,6 +88,8 @@ namespace VehicleRecords.Data
             EmailAddress = "4F988DDAFEE8760D1B56532E2C1C356EAC82DF48EA37F47E86F93230032236C64A0183C9C8670DC9D68D1F5F52E1A6F474FB88ACCA637DD0592894AB442EAA12",
             Password = "A7F059EAF5955D7BDDDE7E4F5C245A62E66FFFF88C2001A511A6D7E7B6F4F30F94EFF44902FC217E7B27A38D4A9594FBEBA09760DBD659F97830E5251FCC4914"
          });
+
+         /*
 
          //   V e h i c l e s
 
@@ -219,6 +223,8 @@ namespace VehicleRecords.Data
             TotalCost = 395,
             VehicleId = 1
          });
+
+         */
       }
    }
 }

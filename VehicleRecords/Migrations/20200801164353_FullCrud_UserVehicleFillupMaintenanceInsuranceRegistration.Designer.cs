@@ -10,8 +10,8 @@ using VehicleRecords.Data;
 namespace VehicleRecords.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200729181229_Registration")]
-    partial class Registration
+    [Migration("20200801164353_FullCrud_UserVehicleFillupMaintenanceInsuranceRegistration")]
+    partial class FullCrud_UserVehicleFillupMaintenanceInsuranceRegistration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,72 +82,6 @@ namespace VehicleRecords.Migrations
                     b.HasIndex("VehicleId");
 
                     b.ToTable("Fillup","VehRec");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Date = new DateTime(2020, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DaysSinceLastFillup = 0,
-                            Gallons = 10.001m,
-                            MilesPerDay = 0m,
-                            MilesPerGallon = 0m,
-                            Odometer = 300,
-                            PricePerDay = 0m,
-                            PricePerGallon = 0m,
-                            PricePerMile = 0m,
-                            TotalCost = 24.99m,
-                            TripOdometer = 300.1m,
-                            VehicleId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Date = new DateTime(2020, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DaysSinceLastFillup = 6,
-                            Gallons = 9.001m,
-                            MilesPerDay = 0m,
-                            MilesPerGallon = 0m,
-                            Odometer = 600,
-                            PricePerDay = 0m,
-                            PricePerGallon = 0m,
-                            PricePerMile = 0m,
-                            TotalCost = 22m,
-                            TripOdometer = 300.1m,
-                            VehicleId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Date = new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DaysSinceLastFillup = 9,
-                            Gallons = 12.001m,
-                            MilesPerDay = 0m,
-                            MilesPerGallon = 0m,
-                            Odometer = 900,
-                            PricePerDay = 0m,
-                            PricePerGallon = 0m,
-                            PricePerMile = 0m,
-                            TotalCost = 22m,
-                            TripOdometer = 300.1m,
-                            VehicleId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Date = new DateTime(2020, 7, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DaysSinceLastFillup = 6,
-                            Gallons = 12.001m,
-                            MilesPerDay = 0m,
-                            MilesPerGallon = 0m,
-                            Odometer = 1350,
-                            PricePerDay = 0m,
-                            PricePerGallon = 0m,
-                            PricePerMile = 0m,
-                            TotalCost = 22m,
-                            TripOdometer = 450.1m,
-                            VehicleId = 1
-                        });
                 });
 
             modelBuilder.Entity("VehicleRecords.Models.Insurance", b =>
@@ -234,31 +168,6 @@ namespace VehicleRecords.Migrations
                     b.HasIndex("VehicleId");
 
                     b.ToTable("Maintenance","VehRec");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BriefDescriptionOfWork = "Oil Change",
-                            Date = new DateTime(2020, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Odometer = 200000,
-                            PerformedBy = "Self",
-                            TotalCost = 22.49m,
-                            VehicleId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            BriefDescriptionOfWork = "Replace Clutch",
-                            Date = new DateTime(2020, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            FullDescriptionOfWork = @"Parts: $150
-Labor: $245
-Warranty: 6 Months / 6,000 Miles",
-                            Odometer = 200150,
-                            PerformedBy = "Woodmoor Conoco",
-                            TotalCost = 395m,
-                            VehicleId = 1
-                        });
                 });
 
             modelBuilder.Entity("VehicleRecords.Models.Registration", b =>
@@ -382,59 +291,6 @@ Warranty: 6 Months / 6,000 Miles",
                     b.HasIndex("UserId");
 
                     b.ToTable("Vehicle","VehRec");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Color = "Gold",
-                            DatePurchased = new DateTime(1995, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateSold = new DateTime(2010, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Make = "Saturn",
-                            Model = "SW2",
-                            OdometerAtPurchase = 10,
-                            OdometerAtSale = 234000,
-                            PurchasePrice = 12500m,
-                            SalePrice = 1000m,
-                            UserId = 1,
-                            Year = 1995
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Color = "Black",
-                            Make = "Honda",
-                            Model = "CR-V",
-                            UserId = 1,
-                            Year = 2001
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Color = "Gold",
-                            Make = "Chevrolet",
-                            Model = "Malibu",
-                            UserId = 1,
-                            Year = 2007
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Color = "Gold",
-                            Make = "Subaru",
-                            Model = "Forester",
-                            UserId = 1,
-                            Year = 2008
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Color = "Blue",
-                            Make = "Mazda",
-                            Model = "3",
-                            UserId = 1,
-                            Year = 2012
-                        });
                 });
 
             modelBuilder.Entity("VehicleRecords.Models.Fillup", b =>

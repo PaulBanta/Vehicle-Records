@@ -5,6 +5,7 @@ using VehicleRecords.Models;
 
 namespace VehicleRecords.Controllers
 {
+   [Area("Accounts")]
    public class UserController : Controller
    {
       //   F i e l d s   &   P r o p e r t i e s
@@ -26,7 +27,7 @@ namespace VehicleRecords.Controllers
       public IActionResult Register()
       {
          if (_repository.IsUserLoggedIn())
-            return RedirectToAction("Index", "Home");
+            return Redirect("/Home/Index");
 
          return View(new User());
       }
@@ -35,7 +36,7 @@ namespace VehicleRecords.Controllers
       public IActionResult Register(User user)
       {
          if (_repository.IsUserLoggedIn())
-            return RedirectToAction("Index", "Home");
+            return Redirect("/Home/Index");
 
          if (ModelState.IsValid)
          {
@@ -57,7 +58,7 @@ namespace VehicleRecords.Controllers
       public IActionResult ChangePassword()
       {
          if (!_repository.IsUserLoggedIn())
-            return RedirectToAction("Index", "Home");
+            return Redirect("/Home/Index");
 
          return View(new ChangePasswordDto { EmailAddress = _repository.GetLoggedInUserEmail() });
       }
@@ -66,7 +67,7 @@ namespace VehicleRecords.Controllers
       public IActionResult ChangePassword(ChangePasswordDto dto)
       {
          if (!_repository.IsUserLoggedIn())
-            return RedirectToAction("Index", "Home");
+            return Redirect("/Home/Index");
 
          if (ModelState.IsValid)
          {
@@ -84,7 +85,7 @@ namespace VehicleRecords.Controllers
       public IActionResult Login()
       {
          if (_repository.IsUserLoggedIn())
-            return RedirectToAction("Index", "Home");
+            return Redirect("/Home/Index");
 
          return View();
       }
@@ -93,7 +94,7 @@ namespace VehicleRecords.Controllers
       public IActionResult Login(User user)
       {
          if (_repository.IsUserLoggedIn())
-            return RedirectToAction("Index", "Home");
+            return Redirect("/Home/Index");
 
          if (ModelState.IsValid)
          {
@@ -102,7 +103,7 @@ namespace VehicleRecords.Controllers
                if (_repository.UserLoggedInWithTempPassword())
                   return RedirectToAction("ChangePassword");
 
-               return RedirectToAction("Index", "Home");
+               return Redirect("/Home/Index");
             }
 
             ModelState.AddModelError("", "Wrong Email Address and/or Password");
@@ -114,14 +115,14 @@ namespace VehicleRecords.Controllers
       public IActionResult Logout()
       {
          _repository.Logout();
-         return RedirectToAction("Index", "Home");
+         return Redirect("/Home/Index");
       }
 
       [HttpGet]
       public IActionResult ResetPassword()
       {
          if (_repository.IsUserLoggedIn())
-            return RedirectToAction("Index", "Home");
+            return Redirect("/Home/Index");
 
          return View();
       }
@@ -130,7 +131,7 @@ namespace VehicleRecords.Controllers
       public IActionResult ResetPassword(User user)
       {
          if (_repository.IsUserLoggedIn())
-            return RedirectToAction("Index", "Home");
+            return Redirect("/Home/Index");
 
          if (ModelState.IsValid)
          {

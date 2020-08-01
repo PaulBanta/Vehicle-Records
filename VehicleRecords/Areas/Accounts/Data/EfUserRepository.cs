@@ -48,13 +48,19 @@ namespace VehicleRecords.Data
 
          int randomLength = _random.Next(4, 6) * 2 + 1;
          string randomPassword = RandomPassword(randomLength);
-         User newUser = new User
+
+         long timestampNowSeconds = GetTimestampNowSeconds();
+
+         string sessionRegisterTimestamp = _session.GetString("_RegisterTimestamp_" + lcEmailAddress);
+         if (sessionRegisterTimestamp != null)
          {
-            EmailAddress = hashedEmailAddress,
-            Password = Hash(lcEmailAddress, randomPassword),
-         };
-         _context.Users.Add(newUser);
-         _context.SaveChanges();
+            if (timestampNowSeconds - long.Parse(sessionRegisterTimestamp) <= 15 * 60)
+            {
+               return true;
+            }
+         }
+         _session.SetString("_RegisterPassword_" + lcEmailAddress, Hash(lcEmailAddress, randomPassword));
+         _session.SetString("_RegisterTimestamp_" + lcEmailAddress, timestampNowSeconds.ToString());
 
          _ = EmailPassword("Vehicle Records Account Created", emailAddress, randomPassword,
             "After you login, click on your email address at the top of the page in order to change your password.");
@@ -71,12 +77,12 @@ namespace VehicleRecords.Data
 
       public string GetLoggedInUserEmail()
       {
-         return _session.GetString("_UserEmail");
+         return _session.GetString("_UserEmail_");
       }
 
       public int? GetLoggedInUserId()
       {
-         return _session.GetInt32("_UserId");
+         return _session.GetInt32("_UserId_");
       }
 
       public bool IsUserLoggedIn()
@@ -117,23 +123,23 @@ namespace VehicleRecords.Data
          if (existingUser == null)
             return false;
 
-         _session.SetString("_UserEmail", emailAddress);
-         _session.SetInt32("_UserId", existingUser.Id);
+         _session.SetString("_UserEmail_", emailAddress);
+         _session.SetInt32("_UserId_", existingUser.Id);
 
          return true;
       }
 
       public void Logout()
       {
-         _session.Remove("_UserEmail");
-         _session.Remove("_UserId");
+         _session.Remove("_UserEmail_");
+         _session.Remove("_UserId_");
       }
 
       public bool ResetPassword(string emailAddress)
       {
          string lcEmailAddress = emailAddress.ToLower();
 
-         User existingUser = GetUser(lcEmailAddress);
+         User existingUser = GetDbUser(lcEmailAddress);
          if (existingUser == null)
             return false;
 
@@ -163,6 +169,8 @@ namespace VehicleRecords.Data
 
       //   P r i v a t e   M e t h o d s
 
+      //   S t a t i c
+
       private static async Task EmailPassword(string subject, string emailAddress, string password, string message = "")
       {
          var apiKey = Environment.GetEnvironmentVariable("SendGridApiKey");
@@ -189,46 +197,87 @@ namespace VehicleRecords.Data
          _ = await client.SendEmailAsync(msg);
       }
 
-      private long GetTimestampNowSeconds()
+      private static long GetTimestampNowSeconds()
       {
          return DateTime.Now.Ticks / 10000000;
       }
 
-      private User GetUser(string lcEmailAddress)
+      //   I n s t a n c e
+
+      private User GetDbUser(string lcEmailAddress)
       {
          return _context.Users.FirstOrDefault(u => u.EmailAddress == Hash(lcEmailAddress));
       }
 
+      private User GetDbUser(string lcEmailAddress, string hashedPassword)
+      {
+         return _context.Users.FirstOrDefault(u => u.EmailAddress == Hash(lcEmailAddress) && u.Password == hashedPassword);
+      }
+
+      private User GetRegisteredUser(string lcEmailAddress, string hashedPassword)
+      {
+         string sessionRegisterTimestamp = _session.GetString("_RegisterTimestamp_" + lcEmailAddress);
+         if (sessionRegisterTimestamp == null)
+            return null;
+
+         long elapsedTimeSeconds = GetTimestampNowSeconds() - long.Parse(sessionRegisterTimestamp);
+         if (elapsedTimeSeconds > 15 * 60)
+            return null;
+
+         string tempSessionPassword = _session.GetString("_RegisterPassword_" + lcEmailAddress);
+         if (tempSessionPassword != hashedPassword)
+            return null;
+
+         User newUser = new User
+         {
+            EmailAddress = Hash(lcEmailAddress),
+            Password = hashedPassword
+         };
+         _context.Users.Add(newUser);
+         _context.SaveChanges();
+         _session.Remove("_RegisterPassword_" + lcEmailAddress);
+         _session.Remove("_RegisterTimestamp_" + lcEmailAddress);
+         _userLoggedInWithTempPassword = true;
+         return newUser;
+      } // end GetRegisteredUser( )
+
+      private User GetResetUser(string lcEmailAddress, string hashedPassword)
+      {
+         string sessionResetTimestamp = _session.GetString("_ResetTimestamp_" + lcEmailAddress);
+         if (sessionResetTimestamp == null)
+            return null;
+
+         long elapsedTimeSeconds = GetTimestampNowSeconds() - long.Parse(sessionResetTimestamp);
+         if (elapsedTimeSeconds > 15 * 60)
+            return null;
+
+         string tempSessionPassword = _session.GetString("_ResetPassword_" + lcEmailAddress);
+         if (tempSessionPassword != hashedPassword)
+            return null;
+
+         _userLoggedInWithTempPassword = true;
+         return new User
+         {
+            EmailAddress = Hash(lcEmailAddress),
+            Password = hashedPassword
+         };
+      }
+
       private User GetUser(string lcEmailAddress, string password)
       {
-         User existingUser = GetUser(lcEmailAddress);
+         _userLoggedInWithTempPassword = false;
 
-         if (existingUser != null)
-         {
-            string hashedPassword = Hash(lcEmailAddress, password);
-            if (hashedPassword == existingUser.Password)
-            {
-               _userLoggedInWithTempPassword = false;
-               return existingUser;
-            }
+         string hashedPassword = Hash(lcEmailAddress, password);
 
-            string sessionResetTimestamp = _session.GetString("_ResetTimestamp_" + lcEmailAddress);
-            if (sessionResetTimestamp != null)
-            {
-               long elapsedTimeSeconds = GetTimestampNowSeconds() - long.Parse(sessionResetTimestamp);
-               if (elapsedTimeSeconds <= 15 * 60)
-               {
-                  string tempSessionPassword = _session.GetString("_ResetPassword_" + lcEmailAddress);
-                  if (tempSessionPassword != null && tempSessionPassword == hashedPassword)
-                  {
-                     _userLoggedInWithTempPassword = true;
-                     return existingUser;
-                  }
-               }
-            }
-         }
+         User existingUser = GetDbUser(lcEmailAddress, hashedPassword);
 
-         return null;
+         if (existingUser == null)
+            existingUser = GetResetUser(lcEmailAddress, hashedPassword);
+
+         if (existingUser == null)
+            existingUser = GetRegisteredUser(lcEmailAddress, hashedPassword);
+
+         return existingUser;
       }
 
       private static string Hash(string lcUsername)

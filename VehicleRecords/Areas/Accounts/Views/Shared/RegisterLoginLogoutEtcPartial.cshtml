@@ -1,0 +1,30 @@
+﻿@using VehicleRecords.Data
+
+@inject IUserRepository _userRepository
+
+@if (_userRepository.IsUserLoggedIn())
+{
+  <li class="nav-item">
+    <a asp-area="" asp-controller="Vehicle" asp-action="Index" class="nav-link text-dark"> Vehicles </a>
+  </li>
+  <li class="nav-item">
+    <a asp-area="Accounts" asp-controller="User" asp-action="ChangePassword" class="nav-link text-primary">
+      @_userRepository.GetLoggedInUserEmail()
+    </a>
+  </li>
+  <li class="nav-item">
+    <a asp-area="Accounts" asp-controller="User" asp-action="Logout" class="nav-link text-dark"> Logout </a>
+  </li>
+}
+else
+{
+  <li class="nav-item">
+    <a asp-area="Accounts" asp-controller="User" asp-action="Register" class="nav-link text-dark"> Register </a>
+  </li>
+  <li class="nav-item">
+    <a asp-area="Accounts" asp-controller="User" asp-action="Login" class="nav-link text-dark"> Login </a>
+  </li>
+  <li class="nav-item">
+    <a asp-area="Accounts" asp-controller="User" asp-action="ResetPassword" class="nav-link text-dark"> Reset Password </a>
+  </li>
+}
